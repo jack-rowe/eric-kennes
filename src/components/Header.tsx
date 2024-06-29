@@ -1,29 +1,53 @@
 "use client";
 import { cn } from "@/utils";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
+import { useTheme } from "next-themes";
+import { AiOutlineSun, AiOutlineMoon, AiOutlineLoading } from "react-icons/ai";
 
 export const Header = () => {
   const [isNavOpen, setIsNavOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const pathname = usePathname();
+  const { theme, setTheme } = useTheme();
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const toggleNav = () => setIsNavOpen((prev) => !prev);
   const closeNav = () => setIsNavOpen(false);
 
   const navLinks = [
     { href: "/", label: "Home" },
+    { href: "/work", label: "Work" },
     { href: "/about", label: "About" },
     { href: "/contact", label: "Contact" },
   ];
 
   return (
-    <div className="border-b border-gray-400 py-8">
+    <div className="border-b border-gray-400 py-8 dark:bg-gray-900 dark:text-white">
       <div className="max-w-[1080px] mx-auto flex items-center justify-between">
         <a href="/">
           <h1 className="text-4xl lg:text-6xl ml-4 lg:ml-0">ERIC KENNES</h1>
         </a>
-        <nav>
+        <nav className="flex items-center">
+          {mounted &&
+            (theme === "dark" ? (
+              <AiOutlineSun
+                className="h-10 w-10 hover:bg-gray-800 p-2 rounded-md mr-8 cursor-pointer"
+                onClick={() => setTheme("light")}
+              />
+            ) : (
+              <AiOutlineMoon
+                className="h-10 w-10 hover:bg-gray-200 p-2 rounded-md mr-8 cursor-pointer"
+                onClick={() => setTheme("dark")}
+              />
+            ))}
+          {!mounted && (
+            <AiOutlineLoading className="h-6 w-6 mr-12  animate-spin" />
+          )}
           <section className="flex lg:hidden text-4xl">
             <div onClick={toggleNav}>
               <AiOutlineMenu
@@ -34,13 +58,12 @@ export const Header = () => {
               className={cn(
                 !isNavOpen && "hidden",
                 isNavOpen &&
-                  "absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center bg-white opacity-85"
+                  "absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center bg-white dark:bg-gray-900 opacity-95 z-50"
               )}
             >
               <div className="absolute top-0 right-0 py-8" onClick={closeNav}>
                 <AiOutlineClose className="h-8 w-8 mr-4" />
               </div>
-
               <ul className="flex flex-col items-center justify-between">
                 {navLinks.map((link) => (
                   <li key={link.href} className="my-6 uppercase">
@@ -58,8 +81,7 @@ export const Header = () => {
               </ul>
             </div>
           </section>
-
-          <ul className="hidden space-x-8 lg:flex text-2xl ">
+          <ul className="hidden space-x-8 lg:flex text-2xl">
             {navLinks.map((link) => (
               <li key={link.href}>
                 <a

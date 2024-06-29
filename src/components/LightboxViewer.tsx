@@ -8,17 +8,23 @@ type LightboxViewerProps = {
   delegate?: string;
   options?: Record<string, any>;
   galleryData: ImageJSON[];
+  children?: React.ReactNode;
 };
 
-function LightboxViewer(props: LightboxViewerProps) {
+function LightboxViewer({
+  delegate,
+  options,
+  galleryData,
+  children,
+}: LightboxViewerProps) {
   const containerRef = useRef(null);
 
   useEffect(() => {
     const container = containerRef.current;
-    const delegate = props.delegate || "[data-fancybox]";
-    const options = props.options || {};
+    const delegateValue = delegate || "[data-fancybox]";
+    const optionsValue = options || {};
 
-    NativeFancybox.bind(container, delegate, options);
+    NativeFancybox.bind(container, delegateValue, optionsValue);
 
     return () => {
       NativeFancybox.unbind(container);
@@ -26,26 +32,47 @@ function LightboxViewer(props: LightboxViewerProps) {
     };
   });
 
+  if (children) {
+    return (
+      <div ref={containerRef}>
+        {React.Children.map(children, (child) =>
+          React.cloneElement(child as React.ReactElement, {
+            "data-fancybox": "gallery",
+            "data-src": galleryData[0].fullSizeURL,
+          })
+        )}
+      </div>
+    );
+  }
+
   return (
     <div
       ref={containerRef}
-      className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 overflow-hidden"
+      className={
+        galleryData.length === 1
+          ? "w-full"
+          : "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4"
+      }
     >
-      {props.galleryData.map((image: ImageJSON) => (
+      {galleryData.map((image: ImageJSON) => (
         <a
           data-fancybox="gallery"
           href={image.fullSizeURL}
           key={image.id}
-          className="w-full overflow-hidden"
+          className="w-full"
         >
-          <Image
-            src={image.thumbnailURL}
-            width={image.width}
-            height={image.height}
-            alt={image.alt}
-            layout="responsive"
-            className="object-cover w-full h-full"
-          />
+          <div
+            className={`relative ${
+              galleryData.length === 1 ? "w-full h-[50vh]" : "w-full h-64"
+            }`}
+          >
+            <Image
+              src={image.thumbnailURL}
+              alt={image.alt}
+              layout="fill"
+              objectFit="cover"
+            />
+          </div>
         </a>
       ))}
     </div>
