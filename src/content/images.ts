@@ -181,17 +181,23 @@ export const featuredImages: ImageJSON[] = [
     thumbnailURL: "/images/a.jpg",
     fullSizeURL: "/images/a.jpg",
     alt: "Image 1",
+    title: "Lakeside Paradise",
+    description: "A serene view of a lake surrounded by lush greenery.",
   },
   {
     id: 2,
     thumbnailURL: "/images/b.jpg",
     fullSizeURL: "/images/b.jpg",
     alt: "Image 2",
+    title: "Mountain View",
+    description: "Riding through the mountains on a sunny day.",
   },
   {
     id: 3,
     thumbnailURL: "/images/c.jpg",
     fullSizeURL: "/images/c.jpg",
     alt: "Image 3",
+    title: "Fluid Motion",
+    description: "The beauty of fluid motion captured in a single frame.",
   },
 ];

@@ -27,7 +27,7 @@ export const Header = () => {
   ];
 
   return (
-    <div className="border-b border-gray-400 py-8 dark:bg-gray-900 dark:text-white">
+    <div className="border-b border-gray-400 py-8 dark:bg-primaryGrey00 dark:text-primaryWhite">
       <div className="max-w-[1080px] mx-auto flex items-center justify-between">
         <a href="/">
           <h1 className="text-4xl lg:text-6xl ml-4 lg:ml-0">ERIC KENNES</h1>
@@ -36,12 +36,12 @@ export const Header = () => {
           {mounted &&
             (theme === "dark" ? (
               <AiOutlineSun
-                className="h-10 w-10 hover:bg-gray-800 p-2 rounded-md mr-8 cursor-pointer"
+                className="h-10 w-10 hover:bg-primaryGrey p-2 rounded-md mr-8 cursor-pointer"
                 onClick={() => setTheme("light")}
               />
             ) : (
               <AiOutlineMoon
-                className="h-10 w-10 hover:bg-gray-200 p-2 rounded-md mr-8 cursor-pointer"
+                className="h-10 w-10 hover:bg-primaryWhite p-2 rounded-md mr-8 cursor-pointer"
                 onClick={() => setTheme("dark")}
               />
             ))}
@@ -58,7 +58,7 @@ export const Header = () => {
               className={cn(
                 !isNavOpen && "hidden",
                 isNavOpen &&
-                  "absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center bg-white dark:bg-gray-900 opacity-95 z-50"
+                  "absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center bg-primaryWhite dark:bg-primaryGrey opacity-95 z-50"
               )}
             >
               <div className="absolute top-0 right-0 py-8" onClick={closeNav}>

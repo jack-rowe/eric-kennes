@@ -15,7 +15,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="font-courier dark:bg-gray-900 dark:text-white">
+      <body className="font-courier bg-primaryWhite dark:bg-primaryGrey dark:text-primaryWhite">
         <ThemeProvider attribute="class">
           <Header />
           {children}

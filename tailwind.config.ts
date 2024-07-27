@@ -25,6 +25,10 @@ const config: Config = {
         xl: "1280px", // Extra large devices
         "2xl": "1536px", // 2x extra large devices
       },
+      colors: {
+        primaryGrey: "#332c26",
+        primaryWhite: "#fff9f4",
+      },
     },
   },
   plugins: [],

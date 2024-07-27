@@ -9,6 +9,7 @@ type LightboxViewerProps = {
   options?: Record<string, any>;
   galleryData: ImageJSON[];
   children?: React.ReactNode;
+  featuredView?: boolean;
 };
 
 function LightboxViewer({
@@ -16,6 +17,7 @@ function LightboxViewer({
   options,
   galleryData,
   children,
+  featuredView = false,
 }: LightboxViewerProps) {
   const containerRef = useRef(null);
 
@@ -23,9 +25,7 @@ function LightboxViewer({
     const container = containerRef.current;
     const delegateValue = delegate || "[data-fancybox]";
     const optionsValue = options || {};
-
     NativeFancybox.bind(container, delegateValue, optionsValue);
-
     return () => {
       NativeFancybox.unbind(container);
       NativeFancybox.close();
@@ -41,6 +41,37 @@ function LightboxViewer({
             "data-src": galleryData[0].fullSizeURL,
           })
         )}
+      </div>
+    );
+  }
+
+  if (featuredView) {
+    return (
+      <div ref={containerRef} className="w-full space-y-8">
+        {galleryData.map((image: ImageJSON) => (
+          <div key={image.id} className="w-full">
+            <a
+              data-fancybox="gallery"
+              href={image.fullSizeURL}
+              className="w-full block"
+            >
+              <div className="relative w-full h-[60vh]">
+                <Image
+                  src={image.thumbnailURL}
+                  alt={image.alt}
+                  layout="fill"
+                  objectFit="cover"
+                />
+              </div>
+            </a>
+            {image.title && (
+              <p className="mt-4 text-xl font-semibold">{image.title}</p>
+            )}
+            {image.description && (
+              <p className="mt-2 text-lg">{image.description}</p>
+            )}
+          </div>
+        ))}
       </div>
     );
   }
