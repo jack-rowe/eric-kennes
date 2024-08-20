@@ -1,5 +1,4 @@
 "use client";
-
 import { FC } from "react";
 import { useForm } from "react-hook-form";
 
@@ -10,16 +9,28 @@ export type FormData = {
 };
 
 const Contact: FC = () => {
-  const { register, handleSubmit } = useForm<FormData>();
+  const { register, handleSubmit, reset } = useForm<FormData>();
 
-  function onSubmit(data: FormData) {
-    // sendEmail(data);
-    //open a mailto link
-    window.open(
-      `mailto:jackrowe97@hotmail.com` +
-        `?subject=Message from ${data.name}` +
-        `&body=${data.message}`
-    );
+  async function onSubmit(data: FormData) {
+    try {
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+      const result = await response.json();
+      if (result.success) {
+        alert('Email sent successfully!');
+        reset(); // Reset the form
+      } else {
+        alert('Failed to send email. Please try again.');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      alert('An error occurred. Please try again.');
+    }
   }
 
   return (
@@ -75,7 +86,7 @@ const Contact: FC = () => {
             </div>
             <button
               type="submit"
-              className="w-full py-3 text-xl bg-primaryGrey  text-primaryWhite font-semibold rounded-lg transition duration-300"
+              className="w-full py-3 text-xl bg-primaryGrey text-primaryWhite font-semibold rounded-lg transition duration-300"
             >
               Send Message
             </button>
