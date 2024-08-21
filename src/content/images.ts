@@ -35,6 +35,14 @@ export const featuredImages: ImageJSON[] = [
     title: "Fluid Motion",
     description: "The beauty of fluid motion captured in a single frame.",
   },
+  {
+    id: 4,
+    thumbnailURL: "/images/Tree Portrait.jpg",
+    fullSizeURL: "/images/Tree Portrait.jpg",
+    alt: "Image 3",
+    title: "Tree Portrait",
+    description: "Behind Brescia Campus before the rain. 9x12 Oil",
+  },
 ];
 
 export const mainGalleryImages: ImageJSON[] = [
