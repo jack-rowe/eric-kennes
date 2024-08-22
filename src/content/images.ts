@@ -12,47 +12,39 @@
 
 export const featuredImages: ImageJSON[] = [
   {
-    id: 1,
-    thumbnailURL: "/images/a.jpg",
-    fullSizeURL: "/images/a.jpg",
-    alt: "Image 1",
-    title: "Lakeside Paradise",
-    description: "A serene view of a lake surrounded by lush greenery.",
-  },
-  {
-    id: 2,
-    thumbnailURL: "/images/b.jpg",
-    fullSizeURL: "/images/b.jpg",
-    alt: "Image 2",
-    title: "Mountain View",
-    description: "Riding through the mountains on a sunny day.",
-  },
-  {
-    id: 3,
-    thumbnailURL: "/images/c.jpg",
-    fullSizeURL: "/images/c.jpg",
-    alt: "Image 3",
-    title: "Fluid Motion",
-    description: "The beauty of fluid motion captured in a single frame.",
-  },
-  {
     id: 4,
     thumbnailURL: "/images/Tree Portrait.jpg",
     fullSizeURL: "/images/Tree Portrait.jpg",
-    alt: "Image 3",
+    alt: "Image 4",
     title: "Tree Portrait",
     description: "Behind Brescia Campus before the rain. 9x12 Oil",
+  },
+  {
+    id: 5,
+    thumbnailURL: "/images/PBJ.jpg",
+    fullSizeURL: "/images/PBJ.jpg",
+    alt: "Image 5",
+    title: "PBJ",
+    description: "Lunch Prep. 9x12 Oil",
+  },
+  {
+    id: 6,
+    thumbnailURL: "/images/Shoes.jpg",
+    fullSizeURL: "/images/Shoes.jpg",
+    alt: "Image 6",
+    title: "Boots",
+    description: "Worn in leather. 9x12 Oil",
   },
 ];
 
 export const mainGalleryImages: ImageJSON[] = [
   {
-    id: 2,
-    thumbnailURL: "/images/b.jpg",
-    fullSizeURL: "/images/b.jpg",
-    alt: "Image 2",
-    title: "Mountain View",
-    description: "Riding through the mountains on a sunny day.",
+    id: 7,
+    thumbnailURL: "/images/Satelite.jpg",
+    fullSizeURL: "/images/Satelite.jpg",
+    alt: "Image 7",
+    title: "Satelite",
+    description: "Hacking Satelite",
   },
   {
     id: 1,
