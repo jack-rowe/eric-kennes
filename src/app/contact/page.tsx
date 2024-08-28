@@ -38,9 +38,7 @@ const Contact: FC = () => {
       <div className="flex w-full max-w-[1080px] flex-col md:flex-row space-y-0 md:space-y-0 md:space-x-6 bg-">
         <div className="md:w-1/2">
           <p className="text-xl mb-8 md:mb-4">
-            I would love to hear from you! Whether you have questions about my
-            work, are interested in a collaboration, or just want to say hello,
-            feel free to reach out.
+            Feel free to contact me here for any purposes.
           </p>
         </div>
         <div className="md:w-1/2">

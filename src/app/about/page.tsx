@@ -18,34 +18,15 @@ export default function About() {
             <p className="text-xl leading-relaxed">
               Hello! My name is <span className="font-semibold">Eric</span>, and
               I am a passionate artist specializing in{" "}
-              <span className="font-semibold">[Medium or Style]</span>. With
-              over <span className="font-semibold">[Number]</span> years of
-              experience, I have developed a unique style that blends{" "}
-              <span className="font-semibold">[Inspiration or Technique]</span>{" "}
-              with <span className="font-semibold">[Other Influences]</span>.
-            </p>
-            <p className="text-xl leading-relaxed mt-4">
-              My work has been showcased in numerous exhibitions, including{" "}
-              <span className="font-semibold">[Exhibition Name]</span> and{" "}
-              <span className="font-semibold">[Exhibition Name]</span>. I am
-              deeply inspired by{" "}
-              <span className="font-semibold">[Inspiration Source]</span>
-              and strive to evoke{" "}
-              <span className="font-semibold">[Emotion or Theme]</span> through
-              my creations. Each piece is crafted with meticulous attention to
-              detail, aiming to tell a story and connect with the audience on a
-              personal level.
-            </p>
-            <p className="text-xl leading-relaxed mt-4">
-              In addition to my artistic practice, I also teach workshops and
-              offer private lessons to aspiring artists. Sharing my knowledge
-              and helping others discover their creative potential is something
-              I find incredibly rewarding.
+              <span className="font-semibold">Oil Painting</span>. 
             </p>
             <p className="text-xl leading-relaxed mt-4">
               Feel free to browse through my portfolio and get in touch if you
               would like to learn more about my work or discuss potential
               collaborations.
+            </p>
+            <p className="text-xl leading-relaxed mt-4">
+              I am a self taught artist that enjoys painting the beauties and oddities of everyday life.
             </p>
           </div>
         </div>
