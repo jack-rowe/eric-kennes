@@ -1,8 +1,8 @@
 "use client";
-import React, { useRef, useEffect } from "react";
 import { Fancybox as NativeFancybox } from "@fancyapps/ui";
 import "@fancyapps/ui/dist/fancybox/fancybox.css";
 import Image from "next/image";
+import React, { useEffect, useRef } from "react";
 
 type LightboxViewerProps = {
   delegate?: string;
@@ -24,8 +24,17 @@ function LightboxViewer({
   useEffect(() => {
     const container = containerRef.current;
     const delegateValue = delegate || "[data-fancybox]";
-    const optionsValue = options || {};
+    const optionsValue = options || {
+      caption: function (fancybox: any, carousel: any, slide: any) {
+        return (
+          `${slide.index + 1} / ${carousel.slides.length} <br />` +
+          (slide.caption || "")
+        );
+      },
+    };
+
     NativeFancybox.bind(container, delegateValue, optionsValue);
+
     return () => {
       NativeFancybox.unbind(container);
       NativeFancybox.close();
@@ -35,10 +44,13 @@ function LightboxViewer({
   if (children) {
     return (
       <div ref={containerRef}>
-        {React.Children.map(children, (child) =>
+        {React.Children.map(children, (child, index) =>
           React.cloneElement(child as React.ReactElement, {
             "data-fancybox": "gallery",
-            "data-src": galleryData[0].fullSizeURL,
+            "data-src": galleryData[index].fullSizeURL,
+            "data-caption": `${galleryData[index].title || ""}<br />${
+              galleryData[index].description || ""
+            }`,
           })
         )}
       </div>
@@ -53,6 +65,9 @@ function LightboxViewer({
             <a
               data-fancybox="gallery"
               href={image.fullSizeURL}
+              data-caption={`${image.title || ""}<br />${
+                image.description || ""
+              }`}
               className="w-full block"
             >
               <div className="relative w-full h-[60vh]">
@@ -91,6 +106,7 @@ function LightboxViewer({
           href={image.fullSizeURL}
           key={image.id}
           className="w-full"
+          data-caption={`${image.title || ""}<br />${image.description || ""}`}
         >
           <div
             className={`relative ${

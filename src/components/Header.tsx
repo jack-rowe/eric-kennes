@@ -4,7 +4,12 @@ import { cn } from "@/utils";
 import { useTheme } from "next-themes";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
-import { AiOutlineClose, AiOutlineMenu, AiOutlineMoon, AiOutlineSun } from "react-icons/ai";
+import {
+  AiOutlineClose,
+  AiOutlineMenu,
+  AiOutlineMoon,
+  AiOutlineSun,
+} from "react-icons/ai";
 
 export const Header = () => {
   const [isNavOpen, setIsNavOpen] = useState(false);
@@ -24,11 +29,11 @@ export const Header = () => {
     { href: "/work", label: "Work" },
     { href: "/about", label: "About" },
     { href: "/contact", label: "Contact" },
-    { href: "/Stuff", label: "Stuff" },
+    { href: "/stuff", label: "Stuff" },
   ];
 
   const toggleTheme = () => {
-    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    const newTheme = currentTheme === "dark" ? "light" : "dark";
     setTheme(newTheme);
     setCurrentTheme(newTheme);
   };
@@ -45,7 +50,7 @@ export const Header = () => {
             className="h-10 w-10 p-2 rounded-md mr-8 hover:bg-gray-200 dark:hover:bg-gray-700"
             aria-label="Toggle theme"
           >
-            {currentTheme === 'dark' ? (
+            {currentTheme === "dark" ? (
               <AiOutlineSun className="h-6 w-6" />
             ) : (
               <AiOutlineMoon className="h-6 w-6" />
@@ -53,7 +58,9 @@ export const Header = () => {
           </button>
           <div className="lg:hidden">
             <button onClick={toggleNav} aria-label="Toggle navigation">
-              <AiOutlineMenu className={cn("h-8 w-8 mr-4", isNavOpen && "hidden")} />
+              <AiOutlineMenu
+                className={cn("h-8 w-8 mr-4", isNavOpen && "hidden")}
+              />
             </button>
           </div>
           <div
@@ -62,7 +69,11 @@ export const Header = () => {
               isNavOpen ? "opacity-100 visible" : "opacity-0 invisible"
             )}
           >
-            <button className="absolute top-0 right-0 py-8 mr-4" onClick={closeNav} aria-label="Close navigation">
+            <button
+              className="absolute top-0 right-0 py-8 mr-4"
+              onClick={closeNav}
+              aria-label="Close navigation"
+            >
               <AiOutlineClose className="h-8 w-8" />
             </button>
             <ul className="flex flex-col items-center justify-between">
@@ -71,7 +82,10 @@ export const Header = () => {
                   <a
                     href={link.href}
                     onClick={closeNav}
-                    className={cn("text-2xl", pathname === link.href && "font-bold underline")}
+                    className={cn(
+                      "text-2xl",
+                      pathname === link.href && "font-bold underline"
+                    )}
                   >
                     {link.label}
                   </a>
@@ -84,7 +98,9 @@ export const Header = () => {
               <li key={link.href}>
                 <a
                   href={link.href}
-                  className={cn(pathname === link.href && "font-bold underline")}
+                  className={cn(
+                    pathname === link.href && "font-bold underline"
+                  )}
                 >
                   {link.label}
                 </a>
